@@ -1,0 +1,12 @@
+/* Minimal supplemental styles; layout is Tailwind-driven. */
+#chat::-webkit-scrollbar { width: 8px; }
+#chat::-webkit-scrollbar-thumb { background: rgba(120,120,120,.35); border-radius: 8px; }
+
+.bubble { max-width: 90%; padding: .55rem .8rem; border-radius: .9rem; line-height: 1.5; white-space: pre-wrap; word-break: break-word; }
+.bubble-user { align-self: flex-start; background: #059669; color: #fff; border-bottom-right-radius: .25rem; }
+.bubble-ai   { align-self: flex-end; background: #e5e7eb; color: #111827; border-bottom-left-radius: .25rem; }
+.dark .bubble-ai { background: #1f2937; color: #f3f4f6; }
+.bubble-err  { align-self: center; background: #fee2e2; color: #991b1b; font-size: .75rem; }
+.dark .bubble-err { background: #7f1d1d; color: #fecaca; }
+
+.keydot { width: 9px; height: 9px; border-radius: 9999px; display: inline-block; }

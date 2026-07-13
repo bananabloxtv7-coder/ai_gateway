@@ -1,0 +1,20 @@
+{
+  "_comment": "No-Limit keys — add multiple real API keys per provider here. They are APPENDED to existing keys (from keys.json or pi models.json).",
+  "Alibaba": [
+    "sk-your-real-alibaba-key-1",
+    "sk-your-real-alibaba-key-2",
+    "sk-your-real-alibaba-key-3"
+  ],
+  "NVIDIA": [
+    "nvapi-your-real-nvidia-key-1",
+    "nvapi-your-real-nvidia-key-2"
+  ],
+  "flatkey.ai": [
+    "sk-your-real-flatkey-key-1",
+    "sk-your-real-flatkey-key-2"
+  ],
+  "cometapi": [
+    "sk-your-real-cometapi-key-1",
+    "sk-your-real-cometapi-key-2"
+  ]
+}
