@@ -40,3 +40,8 @@ build/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Model Lab live results
+model_lab/results/*.json
+model_lab/results/*.jsonl
+!model_lab/results/.gitkeep

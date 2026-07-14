@@ -1,0 +1,9 @@
+{
+  "routes": [
+    "provider-a::model-a",
+    "provider-b::model-b",
+    "provider-c::model-c",
+    "provider-d::model-d",
+    "provider-e::model-e"
+  ]
+}
