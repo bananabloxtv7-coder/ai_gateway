@@ -1,42 +1,32 @@
-# Secrets & Local Environment
+.git
+.gitignore
+
 .env
 .env.*
 !.env.example
 
-# Config files with actual secrets
+backend/.env
 backend/keys.json
 backend/keys_no_limit.json
+backend/providers.json
+
 keys.json
 keys_no_limit.json
-backend/providers.json
 providers.json
 
-# Local configurations
-*.secret.json
 secrets/
 credentials/
 
-# Python
 __pycache__/
 *.py[cod]
 .pytest_cache/
 .venv/
 venv/
-.eggs/
-*.egg-info/
-dist/
-build/
 
-# Logs and local databases
 *.log
 *.db
 *.sqlite
 *.sqlite3
 
-# IDE
 .vscode/
 .idea/
-
-# OS files
-.DS_Store
-Thumbs.db

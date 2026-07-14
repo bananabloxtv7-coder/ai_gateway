@@ -1,0 +1,25 @@
+{
+  "providers": [
+    {
+      "name": "Alibaba",
+      "slug": "alibaba",
+      "enabled": true,
+      "base_url": "https://dashscope-intl.aliyuncs.com/compatible-mode/v1",
+      "keys_env": "ALIBABA_API_KEYS",
+      "models": [
+        "qwen-max",
+        "qwen-plus"
+      ]
+    },
+    {
+      "name": "NVIDIA",
+      "slug": "nvidia",
+      "enabled": true,
+      "base_url": "https://integrate.api.nvidia.com/v1",
+      "keys_env": "NVIDIA_API_KEYS",
+      "models": [
+        "meta/llama-3.3-70b-instruct"
+      ]
+    }
+  ]
+}
