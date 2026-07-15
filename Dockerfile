@@ -18,8 +18,8 @@ COPY backend/routes.py ./routes.py
 COPY backend/forwarder.py ./forwarder.py
 COPY backend/no_limit.py ./no_limit.py
 
-# Copy provider configs
-COPY backend/providers.json ./providers.json
+# Copy provider configs (providers.json is gitignored/dockerignored;
+# config.py falls back to providers.example.json and reads keys from env vars)
 COPY backend/providers.example.json ./providers.example.json
 COPY backend/keys_no_limit.example.json ./keys_no_limit.example.json
 
