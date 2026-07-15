@@ -29,7 +29,11 @@ class LabConfig:
             print("ERROR: YOUSSEF_API_KEY environment variable is missing.", file=sys.stderr)
             sys.exit(1)
             
+        base_url_val = base_url.rstrip("/")
+        if not base_url_val.endswith("/v1"):
+            base_url_val = f"{base_url_val}/v1"
+
         return cls(
-            base_url=base_url.rstrip("/"),
+            base_url=base_url_val,
             api_key=api_key,
         )

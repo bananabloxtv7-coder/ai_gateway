@@ -327,3 +327,35 @@ async def test_route_failover_does_not_happen_implicitly():
         resp = await forward_request(route, pool, payload, stream=False)
         assert resp.status_code == 200
         assert call_count == 2
+
+
+def test_admin_no_limit_endpoint():
+    auth.GATEWAY_ADMIN_KEY = "admin456"
+
+    # Missing auth
+    resp = client.get("/admin/no-limit")
+    assert resp.status_code == 401
+
+    # Bad auth
+    resp = client.get("/admin/no-limit", headers={"Authorization": "Bearer bad"})
+    assert resp.status_code == 401
+
+    # Good auth
+    resp = client.get("/admin/no-limit", headers={"Authorization": "Bearer admin456"})
+    assert resp.status_code == 200
+    data = resp.json()
+    assert data["status"] == "enabled"
+    assert "discovered_providers" in data
+    assert "extra_keys_loaded" in data
+
+
+def test_admin_stats_includes_models():
+    auth.GATEWAY_ADMIN_KEY = "admin456"
+    resp = client.get("/admin/stats", headers={"Authorization": "Bearer admin456"})
+    assert resp.status_code == 200
+    data = resp.json()
+    assert "providers" in data
+    for p in data["providers"]:
+        assert "models" in p
+        assert isinstance(p["models"], list)
+        assert "keys_count" in p

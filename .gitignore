@@ -33,6 +33,10 @@ build/
 *.sqlite
 *.sqlite3
 
+# Pi subagent artifacts
+.pi-subagents/
+.mcp.json
+
 # IDE
 .vscode/
 .idea/
@@ -42,6 +46,21 @@ build/
 Thumbs.db
 
 # Model Lab live results
+model_lab/results/*.json
+model_lab/results/*.jsonl
+!model_lab/results/.gitkeep
+
+# Browser automation output
+test-output/
+playwright-report/
+blob-report/
+
+# Browser automation output
+test-output/
+playwright-report/
+blob-report/
+
+# Model Lab generated results
 model_lab/results/*.json
 model_lab/results/*.jsonl
 !model_lab/results/.gitkeep

@@ -7,6 +7,7 @@ from auth import require_gateway_auth, require_admin_auth
 from config import load_providers_config
 from routes import Gateway
 from forwarder import forward_request
+from no_limit import build_unified_config, create_example_no_limit_keys, load_pi_providers, load_no_limit_keys
 
 # Setup logging
 logging.basicConfig(level=logging.INFO)
@@ -14,7 +15,9 @@ logger = logging.getLogger("gateway.main")
 
 # Load configuration and initialize Gateway
 try:
+    create_example_no_limit_keys()
     config = load_providers_config()
+    config = build_unified_config(config)
     GW = Gateway(config)
     logger.info(f"Gateway initialized with {len(GW.models)} active routes.")
 except Exception as e:
@@ -84,6 +87,11 @@ def stats():
     out = []
     for name, pool in GW.providers.items():
         # Do not return key secrets or credentials
+        models = [
+            route.public_id
+            for route in GW.routes.values()
+            if route.provider_name == name
+        ]
         out.append({
             "provider": name,
             "keys_count": len(pool.keys),
@@ -91,5 +99,29 @@ def stats():
             "errors": pool.errors,
             "total_usage": sum(pool.usage),
             "total_errors": sum(pool.errors),
+            "models": models,
         })
     return {"providers": out}
+
+
+@app.get("/admin/no-limit", dependencies=[Depends(require_admin_auth)])
+def no_limit_status():
+    pi_provs = load_pi_providers()
+    extra_keys = load_no_limit_keys()
+
+    discovered = []
+    for p in pi_provs:
+        name = p["name"]
+        extra_count = len(extra_keys.get(name, []))
+        discovered.append({
+            "provider": name,
+            "pi_keys_count": len(p.get("keys", [])),
+            "extra_keys_count": extra_count,
+            "models": p.get("models", []),
+        })
+
+    return {
+        "status": "enabled",
+        "discovered_providers": discovered,
+        "extra_keys_loaded": list(extra_keys.keys())
+    }

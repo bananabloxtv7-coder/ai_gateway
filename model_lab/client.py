@@ -89,6 +89,8 @@ def assemble_streaming_tool_calls(events: List[Dict[str, Any]]) -> List[Dict[str
 class GatewayClient:
     def __init__(self, base_url: str, api_key: str, timeout: float = 120.0, transport: Optional[httpx.AsyncBaseTransport] = None):
         self.base_url = base_url.rstrip("/")
+        if not self.base_url.endswith("/v1"):
+            self.base_url = f"{self.base_url}/v1"
         self.api_key = api_key
         self.timeout = timeout
         self.transport = transport
