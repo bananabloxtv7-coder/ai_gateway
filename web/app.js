@@ -64,7 +64,7 @@ async function loadStats() {
       card.innerHTML = `
         <div class="mb-1 flex items-center justify-between">
           <span class="font-medium" dir="ltr">${p.provider}</span>
-          <span class="text-xs text-gray-500 dark:text-gray-400">${p.keys} مفاتيح</span>
+          <span class="text-xs text-gray-500 dark:text-gray-400">${p.keys_count} مفاتيح</span>
         </div>
         <div class="mb-2 flex flex-wrap gap-1">${keyDots}</div>
         <div class="flex gap-4 text-xs text-gray-500 dark:text-gray-400">

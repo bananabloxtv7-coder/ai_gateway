@@ -1,33 +1,37 @@
 {
+  "_comment": "Legacy format — kept for Docker reference only. The gateway now uses providers.json + env vars.",
   "providers": [
     {
-      "name": "openrouter",
+      "name": "Alibaba",
+      "slug": "alibaba",
       "enabled": true,
-      "base_url": "https://openrouter.ai/api/v1",
-      "keys": ["sk-or-KEY-1", "sk-or-KEY-2", "sk-or-KEY-3"],
-      "models": [
-        "openai/gpt-5.6",
-        "anthropic/claude-opus-4.7",
-        "google/gemini-3.1-pro",
-        "z-ai/glm-5",
-        "deepseek/deepseek-v3.2",
-        "moonshotai/kimi-k2.6",
-        "qwen/qwen3-coder"
-      ]
+      "base_url": "https://dashscope-intl.aliyuncs.com/compatible-mode/v1",
+      "keys_env": "ALIBABA_API_KEYS",
+      "models": ["qwen-max", "qwen-plus"]
     },
     {
-      "name": "groq",
-      "enabled": false,
-      "base_url": "https://api.groq.com/openai/v1",
-      "keys": ["gsk_KEY-1", "gsk_KEY-2"],
-      "models": ["llama-4-maverick", "llama-4-scout"]
+      "name": "NVIDIA",
+      "slug": "nvidia",
+      "enabled": true,
+      "base_url": "https://integrate.api.nvidia.com/v1",
+      "keys_env": "NVIDIA_API_KEYS",
+      "models": ["meta/llama-3.3-70b-instruct"]
     },
     {
-      "name": "openai",
-      "enabled": false,
-      "base_url": "https://api.openai.com/v1",
-      "keys": ["sk-KEY-1", "sk-KEY-2"],
-      "models": ["gpt-5.6", "gpt-5.6-mini"]
+      "name": "flatkey.ai",
+      "slug": "flatkey",
+      "enabled": true,
+      "base_url": "https://router.flatkey.ai/v1",
+      "keys_env": "FLATKEY_API_KEYS",
+      "models": ["claude-sonnet-4-5", "gpt-5.4"]
+    },
+    {
+      "name": "cometapi",
+      "slug": "cometapi",
+      "enabled": true,
+      "base_url": "https://api.cometapi.com/v1",
+      "keys_env": "COMETAPI_API_KEYS",
+      "models": ["claude-sonnet-4-5", "gpt-5.4", "gemini-2.5-pro"]
     }
   ]
 }

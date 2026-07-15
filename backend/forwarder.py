@@ -110,8 +110,10 @@ async def forward_request(
                 return JSONResponse(content=resp.json(), headers=response_headers)
                 
         except HTTPException:
+            await client.aclose()
             raise
         except Exception as e:
+            await client.aclose()
             pool.mark_bad(idx)
             last_err_msg = f"{type(e).__name__}: {str(e)}"
             continue

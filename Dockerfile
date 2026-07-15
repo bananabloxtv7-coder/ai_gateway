@@ -18,8 +18,10 @@ COPY backend/routes.py ./routes.py
 COPY backend/forwarder.py ./forwarder.py
 COPY backend/no_limit.py ./no_limit.py
 
-# Copy example/template configs (optional reference)
-COPY backend/keys.example.json ./keys.example.json
+# Copy provider configs
+COPY backend/providers.json ./providers.json
+COPY backend/providers.example.json ./providers.example.json
+COPY backend/keys_no_limit.example.json ./keys_no_limit.example.json
 
 EXPOSE 8080
 
